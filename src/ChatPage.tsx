@@ -1,25 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { MessageRole } from "./enums/MessageRole";
 import { Conversations } from "./types";
 import { ChatUI } from "./components/chat-ui/ChatUI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailReply } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import Login from "./components/login-ui/Login";
 
 const TEST_USER_INFO = { firstName: "Test", lastName: "User" };
-function App() {
-  const authTokenName = "authToken";
-
-  const [authToken, setAuthToken] = useState<string>("initialToken");
-
-  useEffect(() => {
-    const storedToken = sessionStorage.getItem(authTokenName);
-    if (storedToken) {
-      setAuthToken(storedToken);
-    }
-  }, []);
-
+function ChatPage() {
   const [isQuerying, setIsQuerying] = useState<boolean>(false);
 
   const [chatConversations, setChatConversations] = useState<Conversations>([
@@ -45,12 +33,10 @@ function App() {
       },
     ]);
 
-    let chatbotResponse = "Response to backend failed";
-    const storedAuthToken = sessionStorage.getItem(authTokenName);
-    console.log(`Auth token: ${storedAuthToken}`);
+    let chatbotResponse = "T";
     axios
       .post("http://localhost:8000/ask", {
-        token: storedAuthToken,
+        token: "abcdsdfer",
         prompt: value,
       })
       .then((response) => {
@@ -73,23 +59,15 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {authToken !== "initialToken" ? (
-        <div>
-          <ChatUI
-            isQuerying={isQuerying}
-            onSubmit={handleSubmit}
-            placeholder="Type here to chat with Amitha AI."
-            disabled={isQuerying}
-            conversations={chatConversations}
-            customSubmitIcon={<FontAwesomeIcon icon={faMailReply} />}
-          />
-        </div>
-      ) : (
-        <Login />
-      )}
-    </div>
+    <ChatUI
+      isQuerying={isQuerying}
+      onSubmit={handleSubmit}
+      placeholder="Type here to chat with Amitha AI."
+      disabled={isQuerying}
+      conversations={chatConversations}
+      customSubmitIcon={<FontAwesomeIcon icon={faMailReply} />}
+    />
   );
 }
 
-export default App;
+export default ChatPage;
