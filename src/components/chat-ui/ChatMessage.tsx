@@ -15,6 +15,7 @@ export const ChatMessage = ({ message }: IChatMessageProps) => {
   const [, copy] = useCopyToClipboard();
 
   const isBot = message.role !== MessageRole.USER;
+  const chatbotName = "AmithaAI";
 
   return (
     <div className="mt-4">
@@ -23,16 +24,16 @@ export const ChatMessage = ({ message }: IChatMessageProps) => {
           <div className="bg-neutral text-neutral-content h-10 w-10">
             {isBot ? (
               <FontAwesomeIcon icon={faRobot} />
-            ) : message.userInfo?.firstName && message.userInfo?.lastName ? (
-              <span>{`${message.userInfo.firstName.charAt(
-                0
-              )}${message.userInfo.lastName.charAt(0)}`}</span>
+            ) : message.userInfo?.firstName ? (
+              <span>{"User"}</span>
             ) : (
               <FontAwesomeIcon icon={faUser} />
             )}
           </div>
         </Avatar>
-        <h4 className="font-semibold select-none">{isBot ? "Robot" : "You"}</h4>
+        <h4 className="font-semibold select-none">
+          {isBot ? chatbotName : "You"}
+        </h4>
       </div>
       <div className="ml-16 mt-4">
         <div ref={messageRef}>{message.message}</div>
