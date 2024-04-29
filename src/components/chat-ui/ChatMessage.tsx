@@ -24,10 +24,8 @@ export const ChatMessage = ({ message }: IChatMessageProps) => {
           <div className="bg-neutral text-neutral-content h-10 w-10">
             {isBot ? (
               <FontAwesomeIcon icon={faRobot} />
-            ) : message.userInfo?.firstName && message.userInfo?.lastName ? (
-              <span>{`${message.userInfo.firstName.charAt(
-                0
-              )}${message.userInfo.lastName.charAt(0)}`}</span>
+            ) : message.userInfo?.firstName ? (
+              <span>{"User"}</span>
             ) : (
               <FontAwesomeIcon icon={faUser} />
             )}
