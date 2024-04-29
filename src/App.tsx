@@ -9,6 +9,7 @@ import Login from "./components/login-ui/Login";
 
 const TEST_USER_INFO = { firstName: "User", lastName: "User" };
 function App() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const authTokenName = "authToken";
 
   const [authToken, setAuthToken] = useState<string>("initialToken");
@@ -49,7 +50,7 @@ function App() {
     const storedAuthToken = sessionStorage.getItem(authTokenName);
     console.log(`Auth token: ${storedAuthToken}`);
     axios
-      .post("https://461e-45-44-28-25.ngrok-free.app/ask", {
+      .post(API_URL, {
         token: storedAuthToken,
         prompt: value,
       })
