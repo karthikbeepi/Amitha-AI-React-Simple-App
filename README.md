@@ -23,7 +23,7 @@ To publish the app to internet follow the instructions below:
 2. Setup the env variable to use the backend URL.
 
 ```
-VITE_API_URL="https://0f96-45-44-28-25.ngrok-free.app/ask"
+VITE_API_URL=https://0f96-45-44-28-25.ngrok-free.app/ask
 ```
 
 ## To change the existing app in vercel
