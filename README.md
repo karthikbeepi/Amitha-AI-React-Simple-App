@@ -1,5 +1,3 @@
-# React Simple Chatbot UI Demo by @pragmaticgeek
-
 ## To run the project
 
 Install the dependencies
