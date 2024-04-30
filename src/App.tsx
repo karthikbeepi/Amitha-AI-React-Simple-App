@@ -87,7 +87,10 @@ function App() {
           />
         </div>
       ) : (
-        <Login />
+        <div>
+          <h1>{API_URL}</h1>
+          <Login />
+        </div>
       )}
     </div>
   );
